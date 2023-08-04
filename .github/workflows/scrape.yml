@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.CANADIANPHONENUMBER_ACTIONS }}
-          repository: 'your-username/CanadianPhoneNumberData'
+          repository: 'RamVasuthevan/CanadianPhoneNumberData'
           path: 'CanadianPhoneNumberData'
           ref: 'main'
       - name: Download data
