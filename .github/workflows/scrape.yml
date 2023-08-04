@@ -25,6 +25,7 @@ jobs:
           ref: 'main'
       - name: Download data
         run: |
+          cd CanadianPhoneNumberData
           wget https://cnac.ca/data/COCodeStatus_ALL.zip
       - name: Unzip data
         run: |
