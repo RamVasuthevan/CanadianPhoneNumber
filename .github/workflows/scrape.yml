@@ -29,8 +29,7 @@ jobs:
           wget https://cnac.ca/data/COCodeStatus_ALL.zip
       - name: Unzip data
         run: |
-          cd CanadianPhoneNumberData
-          unzip COCodeStatus_ALL.zip -d 
+          unzip COCodeStatus_ALL.zip -d CanadianPhoneNumberData
       - name: Configure git
         run: |
           git config user.name "Automated"
