@@ -37,6 +37,8 @@ function isTorontoNumber(number) {
     // Check if the phone number is in the correct format
     const phoneNumberPattern = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
     const isValidPhoneNumber = phoneNumberPattern.test(number);
+
+    console.log("Is valid phone number: ", isValidPhoneNumber);
     
     const areaCode = number.split('-')[0];
     console.log("Area code: ", areaCode);
