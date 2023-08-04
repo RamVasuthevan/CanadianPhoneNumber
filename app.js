@@ -34,9 +34,13 @@ window.onload = function() {
 function isTorontoNumber(number) {
     if (!number) return false;
 
-    var areaCode = number.split('-')[0];
+    // Check if the phone number is in the correct format
+    const phoneNumberPattern = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
+    const isValidPhoneNumber = phoneNumberPattern.test(number);
+    
+    const areaCode = number.split('-')[0];
     console.log("Area code: ", areaCode);
-    return areaCode === '416' || areaCode === '647' || areaCode === '437';
+    return isValidPhoneNumber && (areaCode === '416' || areaCode === '647' || areaCode === '437');
 }
 
 function show404() {
