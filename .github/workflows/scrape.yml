@@ -25,10 +25,11 @@ jobs:
           ref: 'main'
       - name: Download data
         run: |
-          echo $(ls)
+          cd CanadianPhoneNumberData
           wget https://cnac.ca/data/COCodeStatus_ALL.zip
       - name: Unzip data
         run: |
+          cd CanadianPhoneNumberData
           unzip COCodeStatus_ALL.zip -d 
       - name: Configure git
         run: |
