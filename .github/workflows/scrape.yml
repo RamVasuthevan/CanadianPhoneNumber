@@ -30,12 +30,12 @@ jobs:
       - name: Unzip data
         run: |
           unzip CanadianPhoneNumberData/COCodeStatus_ALL.zip -d CanadianPhoneNumberData
-      - name: Configure git
-        run: |
-          git config user.name "Automated"
-          git config user.email "actions@users.noreply.github.com"
       - name: Commit and push changes
         run: |
+          cd CanadianPhoneNumberData
+          git config user.name "Automated"
+          git config user.email "actions@users.noreply.github.com"
           git add .
+          exit 0
           git commit -m "Update phone number data" || echo "No changes to commit"
           git push
