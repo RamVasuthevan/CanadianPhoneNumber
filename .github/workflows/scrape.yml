@@ -1,0 +1,40 @@
+name: Download, Unzip and Save Phone Number Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 0 * * *'
+
+jobs:
+  update_data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Echo commit hash of CanadianPhoneNumber
+        run: |
+          CanadianPhoneNumber_commit_hash=$(git rev-parse HEAD)
+          echo "CanadianPhoneNumber_commit_hash=${CanadianPhoneNumber_commit_hash}" >> $GITHUB_ENV
+          echo "CanadianPhoneNumber_commit_hash=${CanadianPhoneNumber_commit_hash}"
+      - name: Checkout CanadianPhoneNumberData
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.CANADIANPHONENUMBER_ACTIONS }}
+          repository: 'RamVasuthevan/CanadianPhoneNumberData'
+          path: 'CanadianPhoneNumberData'
+          ref: 'main'
+      - name: Download data
+        run: |
+          wget https://cnac.ca/data/COCodeStatus_ALL.zip
+      - name: Unzip data
+        run: |
+          unzip COCodeStatus_ALL.zip -d CanadianPhoneNumberData
+      - name: Configure git
+        run: |
+          git config user.name "Automated"
+          git config user.email "actions@users.noreply.github.com"
+      - name: Commit and push changes
+        run: |
+          git add .
+          git commit -m "Update phone number data" || echo "No changes to commit"
+          git push
